@@ -6,6 +6,7 @@ import { Input } from "../../components/primitives/inputs/Input.tsx";
 
 export interface PostPreview extends Post {
   username: string;
+  comments?: string[];
 }
 
 export const PostsPage = () => {

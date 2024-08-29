@@ -1,11 +1,24 @@
 import { Link } from "react-router-dom";
 import { PostPreview } from "../../pages/posts/PostsPage.tsx";
+import { useEffect, useState } from "react";
+import { Comment, fetchPostComments } from "../../services/posts.service.ts";
 
 interface Props {
   post: PostPreview;
 }
 
 export const PostItem = ({ post }: Props) => {
+  const [comments, setComments] = useState<Comment[] | null>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const commentsResult = await fetchPostComments(post.id.toString());
+      setComments(commentsResult);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <article className="flex max-w-xl flex-col items-start justify-between">
       <div className="group relative">
@@ -26,6 +39,14 @@ export const PostItem = ({ post }: Props) => {
             {post?.username}
           </p>
         </div>
+      </div>
+
+      <div>
+        {comments
+          ? comments.map((comment) => {
+              return <p className="p1">{comment.body.substring(0, 50)}</p>;
+            })
+          : null}
       </div>
     </article>
   );

@@ -7,6 +7,14 @@ export interface Post {
   body: string;
 }
 
+export interface Comment {
+  postId: number;
+  id: number;
+  name: string;
+  email: string;
+  body: string;
+}
+
 export const fetchPosts = async (): Promise<Post[] | null> => {
   try {
     const response = await fetch(`${API_URL}/posts`, {
@@ -69,4 +77,24 @@ export const getPostById = async (postId: string): Promise<Post | null> => {
   }
 };
 
-export const createPost = async () => {};
+export const fetchPostComments = async (
+  postId: string,
+): Promise<Comment[] | null> => {
+  try {
+    const response = await fetch(`${API_URL}/posts/${postId}/comments`, {
+      headers: defaultHeaders,
+    });
+
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+
+    return (await response.json()) as Comment[];
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+
+    return null;
+  }
+};
