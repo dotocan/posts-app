@@ -1,10 +1,13 @@
+import { ChangeEvent, HTMLInputTypeAttribute } from "react";
+
 interface Props {
-  type?: React.HTMLInputTypeAttribute;
+  type?: HTMLInputTypeAttribute;
   label?: string;
   placeholder?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Input = ({ type, label, placeholder }: Props) => {
+export const Input = ({ type, label, placeholder, onChange }: Props) => {
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -19,6 +22,7 @@ export const Input = ({ type, label, placeholder }: Props) => {
       </div>
       <div className="mt-2">
         <input
+          onChange={onChange}
           placeholder={placeholder}
           type={type ?? "text"}
           required
