@@ -1,6 +1,6 @@
+import "./index.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { HomePage } from "./pages/home/HomePage.tsx";
 import { ErrorPage } from "./pages/error/ErrorPage.tsx";
@@ -20,16 +20,6 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
       },
-      // {
-      //   path: "/app",
-      //   element: <h1>dsa</h1>,
-      //   //children: [{ element: <PostsPage /> }],
-      // },
-      // {
-      //   path: "posts/:id",
-      //   element: <ProtectedRoutes />,
-      //   children: [{ element: <PostDetailsPage /> }],
-      // },
     ],
   },
   {

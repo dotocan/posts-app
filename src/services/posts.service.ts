@@ -35,29 +35,7 @@ export const fetchPosts = async (): Promise<Post[] | null> => {
   }
 };
 
-export const getUserById = async (): Promise<any | null> => {
-  try {
-    const response = await fetch(`${API_URL}/users`, {
-      headers: defaultHeaders,
-    });
-
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    }
-
-    const json = await response.json();
-
-    return json;
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message);
-    }
-
-    return null;
-  }
-};
-
-export const getPostById = async (postId: string): Promise<Post | null> => {
+export const fetchPostById = async (postId: string): Promise<Post | null> => {
   try {
     const response = await fetch(`${API_URL}/posts/${postId}`, {
       headers: defaultHeaders,

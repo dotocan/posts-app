@@ -1,19 +1,26 @@
 import { Link } from "react-router-dom";
-import { PostPreview } from "../../pages/posts/PostsPage.tsx";
 import { useEffect, useState } from "react";
-import { Comment, fetchPostComments } from "../../services/posts.service.ts";
+import {
+  Comment,
+  fetchPostComments,
+  Post,
+} from "../../services/posts.service.ts";
+import { getUserById, User } from "../../services/users.service.ts";
 
 interface Props {
-  post: PostPreview;
+  post: Post;
 }
 
 export const PostItem = ({ post }: Props) => {
+  const [user, setUser] = useState<User | null>(null);
   const [comments, setComments] = useState<Comment[] | null>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const commentsResult = await fetchPostComments(post.id.toString());
+      const userResult = await getUserById(post.userId.toString());
       setComments(commentsResult);
+      setUser(userResult);
     };
 
     fetchData();
@@ -36,7 +43,7 @@ export const PostItem = ({ post }: Props) => {
         <div className="text-sm leading-6">
           <p className="font-semibold text-gray-900">
             <span className="text-gray-800 font-light">Author: </span>
-            {post?.username}
+            {user?.username}
           </p>
         </div>
       </div>
@@ -44,7 +51,11 @@ export const PostItem = ({ post }: Props) => {
       <div>
         {comments
           ? comments.map((comment) => {
-              return <p className="p1">{comment.body.substring(0, 50)}</p>;
+              return (
+                <p key={comment.id} className="p1">
+                  {comment.body.substring(0, 50)}
+                </p>
+              );
             })
           : null}
       </div>

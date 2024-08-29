@@ -1,19 +1,19 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { getPostById, Post } from "../../services/posts.service.ts";
+import { useEffect } from "react";
+import { usePosts } from "../../providers/postsProvider.tsx";
 
 export const PostDetailsPage = () => {
   const { id } = useParams();
-  const [post, setPost] = useState<Post | null>(null);
+  const postsContext = usePosts();
 
+  // TODO: create separate post details context and call this useEffect inside it instead of here?
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await getPostById(id ?? "");
-      setPost(result);
-    };
-
-    fetchData();
+    if (id) {
+      postsContext?.getPostById(id.toString());
+    }
   }, []);
 
-  return <div>{JSON.stringify(post)}</div>;
+  if (!postsContext || !postsContext.selectedPost) return null;
+
+  return <div>{JSON.stringify(postsContext.selectedPost)}</div>;
 };
