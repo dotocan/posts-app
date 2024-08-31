@@ -1,11 +1,8 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {
-  Comment,
-  fetchPostComments,
-  Post,
-} from "../../services/posts.service.ts";
+import { Post } from "../../services/posts.service.ts";
 import { getUserById, User } from "../../services/users.service.ts";
+import { PostComments } from "../../features/comments/PostComments.tsx";
 
 interface Props {
   post: Post;
@@ -13,13 +10,10 @@ interface Props {
 
 export const PostItem = ({ post }: Props) => {
   const [user, setUser] = useState<User | null>(null);
-  const [comments, setComments] = useState<Comment[] | null>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const commentsResult = await fetchPostComments(post.id.toString());
       const userResult = await getUserById(post.userId.toString());
-      setComments(commentsResult);
       setUser(userResult);
     };
 
@@ -48,17 +42,7 @@ export const PostItem = ({ post }: Props) => {
         </div>
       </div>
 
-      <div>
-        {comments
-          ? comments.map((comment) => {
-              return (
-                <p key={comment.id} className="p1">
-                  {comment.body.substring(0, 50)}
-                </p>
-              );
-            })
-          : null}
-      </div>
+      <PostComments postId={post.id.toString()} />
     </article>
   );
 };

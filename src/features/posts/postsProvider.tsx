@@ -1,5 +1,9 @@
-﻿import { fetchPostById, fetchPosts, Post } from "../services/posts.service.ts";
-import { createContext, ReactNode, useContext, useState } from "react";
+﻿import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  fetchPostById,
+  fetchPosts,
+  Post,
+} from "../../services/posts.service.ts";
 
 interface PostsProviderType {
   posts: Post[] | null;

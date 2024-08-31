@@ -1,6 +1,6 @@
 import { Input } from "../../components/primitives/inputs/Input";
-import { useAuth } from "../../providers/authProvider.tsx";
 import { ChangeEvent, useState } from "react";
+import { useAuth } from "./authProvider.tsx";
 
 export const LoginForm = () => {
   const [username, setUsername] = useState("");

@@ -6,9 +6,9 @@ import { HomePage } from "./pages/home/HomePage.tsx";
 import { ErrorPage } from "./pages/error/ErrorPage.tsx";
 import { PostsPage } from "./pages/posts/PostsPage.tsx";
 import { PostDetailsPage } from "./pages/posts/PostDetailsPage.tsx";
-import { AuthProvider } from "./providers/authProvider.tsx";
 import { ProtectedRoutes } from "./ProtectedRoutes.tsx";
 import { RootLayout } from "./RootLayout.tsx";
+import { AuthProvider } from "./features/auth/authProvider.tsx";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
-      {
+      {   
         path: "/",
         element: <HomePage />,
       },

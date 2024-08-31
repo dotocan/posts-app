@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { usePosts } from "../../providers/postsProvider.tsx";
+import { usePosts } from "../../features/posts/postsProvider.tsx";
 
 export const PostDetailsPage = () => {
   const { id } = useParams();

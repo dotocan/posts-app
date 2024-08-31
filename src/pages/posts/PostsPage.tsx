@@ -1,5 +1,5 @@
-import { PostsProvider } from "../../providers/postsProvider.tsx";
-import { PostsList } from "./PostsList.tsx";
+import { PostsProvider } from "../../features/posts/postsProvider.tsx";
+import { PostsList } from "../../features/posts/PostsList.tsx";
 
 export const PostsPage = () => {
   return (

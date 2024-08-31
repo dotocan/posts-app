@@ -1,7 +1,7 @@
-﻿import { usePosts } from "../../providers/postsProvider.tsx";
-import { Input } from "../../components/primitives/inputs/Input.tsx";
+﻿import { Input } from "../../components/primitives/inputs/Input.tsx";
 import { PostItem } from "../../components/blocks/PostItem.tsx";
 import { useEffect } from "react";
+import { usePosts } from "./postsProvider.tsx";
 
 export const PostsList = () => {
   const postsContext = usePosts();

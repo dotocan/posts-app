@@ -1,5 +1,5 @@
 ﻿import { createContext, ReactNode, useContext, useState } from "react";
-import { checkToken, login, logout } from "../services/auth.service.ts";
+import { checkToken, login, logout } from "../../services/auth.service.ts";
 
 interface AuthContextType {
   user: string | null;
@@ -27,13 +27,11 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
     const token = checkToken();
 
     if (token) {
-      console.log("token exists");
       setUser(token);
       setToken(token);
       setLoading(false);
       setError(null);
     } else {
-      console.log("no token exists");
       setLoading(false);
       setError("Wrong username or password. Please try again.");
     }
@@ -45,13 +43,11 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
     const token = login(username, password);
 
     if (token) {
-      console.log("token exists");
       setUser(username);
       setToken(token);
       setLoading(false);
       setError(null);
     } else {
-      console.log("no token exists");
       setLoading(false);
       setError("Wrong username or password. Please try again.");
     }
