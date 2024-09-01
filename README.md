@@ -49,4 +49,6 @@ components don't usually use them directly, they communicate with services via C
 # Potential improvements
  - Save auth token to local storage so users can refresh a certain page and remain logged in
  - Truncate post preview body text to a certain length, to avoid having large blog post cards when a post is long
- - 
+ - Dedicated Loading component, perhaps a skeleton
+ - Dedicated Error component for smaller errors, like an issue with loading post comments.
+ - Dedicated EmptyState component, when there are 0 blog posts

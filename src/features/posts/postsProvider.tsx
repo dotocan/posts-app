@@ -12,6 +12,7 @@ import { User } from "../../services/users/users.models";
 
 interface PostsProviderType {
   blogPosts: BlogPost[] | null;
+  filteredPosts: BlogPost[] | null;
   loadingPosts: boolean;
   postsError: string | null;
   blogPost: BlogPost | null;
@@ -19,6 +20,7 @@ interface PostsProviderType {
   selectedPostError: string | null;
   getPostsWithAuthorsAndComments: () => void;
   getPostWithAuthorAndComments: (postId: string) => void;
+  filterPostsByUser: (query: string) => void;
 }
 
 interface PostsContextProps {
@@ -53,13 +55,12 @@ const mapUserIntoBlogAuthor = (
 
 export const PostsProvider = ({ children }: PostsContextProps) => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[] | null>(null);
+  const [filteredPosts, setFilteredPosts] = useState<BlogPost[] | null>(null);
   const [blogPost, setBlogPost] = useState<BlogPost | null>(null);
 
-  const [posts, setPosts] = useState<Post[] | null>([]);
   const [loadingPosts, setLoadingPosts] = useState(false);
   const [postsError, setPostsError] = useState<string | null>(null);
 
-  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
   const [loadingSelectedPost, setLoadingSelectedPost] = useState(false);
   const [selectedPostError, setSelectedPostError] = useState<string | null>(
     null
@@ -93,9 +94,11 @@ export const PostsProvider = ({ children }: PostsContextProps) => {
 
       setLoadingPosts(false);
       setBlogPosts(blogPosts);
+      setFilteredPosts(blogPosts);
       setPostsError(null);
     } else {
       setLoadingPosts(false);
+      setFilteredPosts(null);
       setBlogPosts(null);
       setPostsError("Error fetching posts");
     }
@@ -148,10 +151,26 @@ export const PostsProvider = ({ children }: PostsContextProps) => {
     }
   };
 
+  const filterPostsByUser = (query: string) => {
+    if (blogPosts) {
+      if (query === "") {
+        setFilteredPosts(blogPosts);
+      } else {
+        const filtered = blogPosts.filter((p) =>
+          p.author?.name.toLowerCase().includes(query.toLowerCase())
+        );
+        setFilteredPosts(filtered);
+      }
+    } else {
+      setFilteredPosts(null);
+    }
+  };
+
   return (
     <PostsContext.Provider
       value={{
         blogPosts,
+        filteredPosts,
         loadingPosts,
         postsError,
         blogPost,
@@ -159,6 +178,7 @@ export const PostsProvider = ({ children }: PostsContextProps) => {
         selectedPostError,
         getPostsWithAuthorsAndComments,
         getPostWithAuthorAndComments,
+        filterPostsByUser,
       }}
     >
       {children}
