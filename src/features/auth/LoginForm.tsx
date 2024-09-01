@@ -1,6 +1,9 @@
 import { Input } from "../../components/primitives/inputs/Input";
 import { ChangeEvent, useState } from "react";
 import { useAuth } from "./authProvider.tsx";
+import { Heading2 } from "../../components/primitives/typography/Heading.tsx";
+import { Button } from "../../components/primitives/buttons/Button.tsx";
+import { BodyText } from "../../components/primitives/typography/BodyText.tsx";
 
 export const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -24,9 +27,9 @@ export const LoginForm = () => {
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <Heading2 weight="bold" className="mt-10 text-cente">
             Sign in to your account
-          </h2>
+          </Heading2>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -37,27 +40,21 @@ export const LoginForm = () => {
               type="password"
               onChange={handlePasswordChange}
             />
-
-            <div>
-              <button
-                onClick={handleSignIn}
-                type="submit"
-                disabled={auth?.loading}
-                className="text-white flex w-full justify-center rounded-md bg-martian-600 px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm hover:bg-martian-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-martian-600"
-              >
-                Sign in
-              </button>
-            </div>
+            <Button
+              text="Sign in"
+              disabled={auth?.loading}
+              onClick={handleSignIn}
+            />
           </div>
 
-          <h3>{auth?.error}</h3>
+          <BodyText color="danger">{auth?.error}</BodyText>
 
-          <p className="mt-10 text-sm text-gray-500">
-            email: <strong>user@test.com</strong>
-          </p>
-          <p className="mt-2 text-sm text-gray-500">
-            pw: <strong>test</strong>
-          </p>
+          <BodyText color="faded" className="mt-5">
+            email: <span className="font-bold">user@test.com</span>
+          </BodyText>
+          <BodyText color="faded" className="mt-1 ">
+            password: <span className="font-bold">test</span>
+          </BodyText>
         </div>
       </div>
     </>

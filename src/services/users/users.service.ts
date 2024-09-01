@@ -1,34 +1,5 @@
-import { API_URL, defaultHeaders } from "../config/api.config.ts";
-
-export interface User {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  address: Address;
-  phone: string;
-  website: string;
-  company: Company;
-}
-
-export interface Company {
-  name: string;
-  catchPhrase: string;
-  bs: string;
-}
-
-export interface Address {
-  street: string;
-  suite: string;
-  city: string;
-  zipcode: string;
-  geo: Geo;
-}
-
-export interface Geo {
-  lat: string;
-  lng: string;
-}
+import { API_URL, defaultHeaders } from "../../config/api.config";
+import { User } from "./users.models";
 
 export const fetchUsers = async (): Promise<User[] | null> => {
   try {
@@ -50,7 +21,7 @@ export const fetchUsers = async (): Promise<User[] | null> => {
   }
 };
 
-export const getUserById = async (id: string): Promise<User | null> => {
+export const fetchUserById = async (id: string): Promise<User | null> => {
   try {
     const response = await fetch(`${API_URL}/users/${id}`, {
       headers: defaultHeaders,

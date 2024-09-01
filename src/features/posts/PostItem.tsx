@@ -1,48 +1,72 @@
+import { AuthorPreview } from "./AuthorPreview.tsx";
+import { CommentsPreview } from "../comments/CommentsPreview.tsx";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { Post } from "../../services/posts.service.ts";
-import { getUserById, User } from "../../services/users.service.ts";
-import { PostComments } from "../../features/comments/PostComments.tsx";
+import { Heading2 } from "../../components/primitives/typography/Heading.tsx";
+import { BodyText } from "../../components/primitives/typography/BodyText.tsx";
+
+export interface BlogAuthor {
+  id: string;
+  name: string;
+  info: string;
+}
+
+export interface BlogPostComment {
+  id: string;
+  username: string;
+  body: string;
+}
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  body: string;
+  author: BlogAuthor | null;
+  comments: BlogPostComment[] | null;
+}
 
 interface Props {
-  post: Post;
+  post: BlogPost;
 }
 
 export const PostItem = ({ post }: Props) => {
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const userResult = await getUserById(post.userId.toString());
-      setUser(userResult);
-    };
-
-    fetchData();
-  }, []);
-
   return (
-    <article className="flex max-w-xl flex-col items-start justify-between">
-      <div className="group relative">
-        <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-          <Link to={`/posts/${post.id}`}>
-            <span className="absolute inset-0" />
-            {post.title}
-          </Link>
-        </h3>
-        <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
-          {post.body}
-        </p>
-      </div>
-      <div className="relative mt-8 flex items-center gap-x-4">
-        <div className="text-sm leading-6">
-          <p className="font-semibold text-gray-900">
-            <span className="text-gray-800 font-light">Author: </span>
-            {user?.username}
-          </p>
+    <article className="flex flex-col justify-between p-6 bg-white rounded-lg border border-gray-200 shadow-md">
+      <div>
+        <div className="flex justify-between items-center mb-5">
+          <CommentsPreview comments={post.comments} />
+        </div>
+
+        <div>
+          <Heading2 weight="bold" className="mb-2">
+            <Link to={`/posts/${post.id}`}>{post.title}</Link>
+          </Heading2>
+
+          <BodyText color="faded" weight="light" className="mb-5">
+            {post.body}
+          </BodyText>
         </div>
       </div>
 
-      <PostComments postId={post.id.toString()} />
+      <div className="flex justify-between items-center">
+        <AuthorPreview author={post.author} />
+        <div className="inline-flex items-center">
+          <BodyText weight="bold" className="hover:underline">
+            <Link to={`/posts/${post.id}`}>Read more</Link>
+          </BodyText>
+          <svg
+            className="ml-2 w-4 h-4"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </div>
+      </div>
     </article>
   );
 };

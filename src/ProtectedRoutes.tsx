@@ -4,5 +4,7 @@ import { useAuth } from "./features/auth/authProvider.tsx";
 export const ProtectedRoutes = () => {
   const auth = useAuth();
 
-  return auth?.token ? <Outlet /> : <Navigate to="/" />;
+  return (
+    <div className="p-10">{auth?.token ? <Outlet /> : <Navigate to="/" />}</div>
+  );
 };

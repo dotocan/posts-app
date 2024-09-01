@@ -1,7 +1,7 @@
-﻿import { Comment } from "../../services/posts.service.ts";
+﻿import { BlogPostComment } from "../posts/PostItem";
 
 interface Props {
-  comment: Comment | null;
+  comment: BlogPostComment;
 }
 
 export const CommentListItem = ({ comment }: Props) => {
@@ -15,9 +15,9 @@ export const CommentListItem = ({ comment }: Props) => {
             <img
               className="mr-2 w-6 h-6 rounded-full"
               src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
-              alt={comment.name}
+              alt={comment.username}
             />
-            {comment.name}
+            {comment.username}
           </p>
         </div>
       </footer>

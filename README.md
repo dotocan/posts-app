@@ -30,7 +30,7 @@ Run `npm run dev` to start the app locally
 redirects back to login page if there is no valid authentication.
 
 ---
-**/components** - contains reusable components 
+**/components** - contains reusable components that could also be shared with other projects
 - **/primitives** - simple components that usually don't use other components. Example: inputs, buttons, cards etc.
 - **/blocks** - more complex components consisting of other components. Example: forms, navbars etc. 
 ---
@@ -45,3 +45,6 @@ redirects back to login page if there is no valid authentication.
 ---
 **/services** - used for communicating with the "outside world". They can call APIs, talk to local storage etc. React 
 components don't usually use them directly, they communicate with services via Context.
+
+# Potential improvements
+Blog posts, comments and users all have separate APIs and need to be fetched individually, but combined for 

@@ -1,6 +1,5 @@
 ﻿import { CommentsProvider, useComments } from "./commentsProvider.tsx";
 import { useEffect } from "react";
-import { CommentsList } from "./CommentsList.tsx";
 
 interface Props {
   postId: string;
@@ -30,5 +29,5 @@ const PostCommentsContent = ({ postId }: Props) => {
   if (commentsContext.commentsError)
     return <div>{commentsContext.commentsError}</div>;
 
-  return <CommentsList comments={commentsContext.comments} />;
+  return <div>delete me</div>;
 };

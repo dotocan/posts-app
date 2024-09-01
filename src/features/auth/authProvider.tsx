@@ -1,5 +1,5 @@
 ﻿import { createContext, ReactNode, useContext, useState } from "react";
-import { checkToken, login, logout } from "../../services/auth.service.ts";
+import { checkToken, login, logout } from "../../services/auth/auth.service.ts";
 
 interface AuthContextType {
   user: string | null;
