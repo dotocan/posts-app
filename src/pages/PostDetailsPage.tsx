@@ -1,27 +1,17 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
-import { PostsProvider, usePosts } from "../features/posts/postsProvider.tsx";
-import { FullPost } from "../features/posts/FullPost.tsx";
+import { PostsProvider } from "../features/posts/postsProvider.tsx";
+import { PostContainer } from "../features/posts/PostContainer.tsx";
 
 export const PostDetailsPage = () => {
   const { id } = useParams();
-  const postsContext = usePosts();
 
-  useEffect(() => {
-    if (id) {
-      postsContext?.getPostWithAuthorAndComments(id.toString());
-    }
-  }, []);
-
-  if (!postsContext || !postsContext.blogPost) return null;
-
-  // TODO: create error component
-  if (postsContext.selectedPostError)
-    return <div>{postsContext.selectedPostError}</div>;
+  if (!id) return null;
 
   return (
-    <PostsProvider>
-      <FullPost post={postsContext.blogPost} />
-    </PostsProvider>
+    <div className="sm:mx-12 md:mx-24 lg:mx-44 xl:mx-60">
+      <PostsProvider>
+        <PostContainer postId={id} />
+      </PostsProvider>
+    </div>
   );
 };

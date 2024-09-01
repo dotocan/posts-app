@@ -113,10 +113,27 @@ export const PostsProvider = ({ children }: PostsContextProps) => {
       const postUser = await fetchUserById(resultPost.userId.toString());
       const postComments = await fetchPostComments(postId);
 
+      // Make body text longer for demonstration purposes, since placeholder API returns very little body text
+      const mockLongText =
+        resultPost.body +
+        resultPost.body +
+        resultPost.body +
+        resultPost.body +
+        resultPost.body +
+        resultPost.body +
+        resultPost.body +
+        resultPost.body +
+        resultPost.body +
+        resultPost.body +
+        resultPost.body +
+        resultPost.body +
+        resultPost.body +
+        resultPost.body;
+
       const blogPost: BlogPost = {
         id: resultPost.id.toString(),
         title: resultPost.title,
-        body: resultPost.body,
+        body: mockLongText,
         author: mapUserIntoBlogAuthor(postUser),
         comments: mapCommentsIntoBlogPostComments(postComments),
       };

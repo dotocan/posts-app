@@ -12,7 +12,7 @@ export const Heading1 = ({
 }: TypographyProps) => {
   return (
     <h1
-      className={`text-1xl ${weightToClassName(weight)} ${colorToClassName(color)} ${className}`}
+      className={`text-4xl ${weightToClassName(weight)} ${colorToClassName(color)} ${className}`}
     >
       {children}
     </h1>

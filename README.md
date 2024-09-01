@@ -47,4 +47,6 @@ redirects back to login page if there is no valid authentication.
 components don't usually use them directly, they communicate with services via Context.
 
 # Potential improvements
-Blog posts, comments and users all have separate APIs and need to be fetched individually, but combined for 
+ - Save auth token to local storage so users can refresh a certain page and remain logged in
+ - Truncate post preview body text to a certain length, to avoid having large blog post cards when a post is long
+ - 

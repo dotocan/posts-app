@@ -1,4 +1,5 @@
-﻿import { BlogPostComment } from "../posts/PostItem";
+﻿import { BodyText } from "../../components/primitives/typography/BodyText";
+import { BlogPostComment } from "../posts/PostItem";
 
 interface Props {
   comment: BlogPostComment;
@@ -9,7 +10,7 @@ export const CommentListItem = ({ comment }: Props) => {
 
   return (
     <article className="p-6 text-base bg-white rounded-lg dark:bg-gray-900">
-      <footer className="flex justify-between items-center mb-2">
+      <div className="flex justify-between items-center mb-2">
         <div className="flex items-center">
           <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
             <img
@@ -20,8 +21,8 @@ export const CommentListItem = ({ comment }: Props) => {
             {comment.username}
           </p>
         </div>
-      </footer>
-      <p className="text-gray-500 dark:text-gray-400">{comment.body}</p>
+      </div>
+      <BodyText color="faded">{comment.body}</BodyText>
     </article>
   );
 };
