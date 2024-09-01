@@ -1,4 +1,4 @@
-﻿import { createContext, ReactNode, useContext, useState } from "react";
+﻿import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { checkToken, login, logout } from "../../services/auth/auth.service.ts";
 
 interface AuthContextType {
@@ -20,20 +20,20 @@ const AuthContext = createContext<AuthContextType | null>(null);
 export const AuthProvider = ({ children }: AuthContextProps) => {
   const [user, setUser] = useState<string | null>(null);
   const [token, setToken] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const getToken = () => {
-    const token = checkToken();
+    setLoading(true);
+    const tokenFromStorage = checkToken();
 
-    if (token) {
-      setUser(token);
-      setToken(token);
+    if (tokenFromStorage) {
+      setUser(tokenFromStorage);
+      setToken(tokenFromStorage);
       setLoading(false);
       setError(null);
     } else {
       setLoading(false);
-      setError("Wrong username or password. Please try again.");
     }
   };
 

@@ -5,5 +5,7 @@ import { LoginForm } from "../features/auth/LoginForm";
 export const HomePage = () => {
   const auth = useAuth();
 
-  return auth?.token ? <Navigate to="/app" /> : <LoginForm />;
+  if (auth?.token) return <Navigate to="/app" />;
+
+  return <LoginForm />;
 };

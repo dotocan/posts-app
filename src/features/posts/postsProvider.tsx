@@ -1,5 +1,5 @@
 ﻿import { createContext, ReactNode, useContext, useState } from "react";
-import { Comment, Post } from "../../services/posts/posts.models";
+import { Comment } from "../../services/posts/posts.models";
 import {
   fetchPosts,
   fetchPostById,
