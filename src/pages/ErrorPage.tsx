@@ -1,6 +1,8 @@
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";
+import { MessageProps } from "../shared/message.props";
+import { withLogger } from "../shared/loggerHoc";
 
-export const ErrorPage = () => {
+export const ErrorPage = (_: MessageProps) => {
   let statusCode = "Oops!";
   let errorMessage = "Something went wrong";
 
@@ -33,3 +35,5 @@ export const ErrorPage = () => {
     </main>
   );
 };
+
+export default withLogger(ErrorPage);

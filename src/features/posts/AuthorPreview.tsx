@@ -1,6 +1,8 @@
+import { withLogger } from "../../shared/loggerHoc";
+import { MessageProps } from "../../shared/message.props";
 import { BlogAuthor } from "./PostItem";
 
-interface Props {
+interface Props extends MessageProps {
   author: BlogAuthor | null;
 }
 
@@ -14,3 +16,5 @@ export const AuthorPreview = ({ author }: Props) => {
     </div>
   );
 };
+
+export default withLogger(AuthorPreview);

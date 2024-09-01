@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
+import { MessageProps } from "../../../shared/message.props";
 
 export type TypographyWeight = "light" | "medium" | "bold";
 export type TypographyColor = "normal" | "faded" | "danger";
 
-export interface TypographyProps {
+export interface TypographyProps extends MessageProps {
   weight?: TypographyWeight;
   color?: TypographyColor;
   className?: string;

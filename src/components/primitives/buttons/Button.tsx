@@ -1,4 +1,7 @@
-interface ButtonProps {
+import { withLogger } from "../../../shared/loggerHoc";
+import { MessageProps } from "../../../shared/message.props";
+
+interface ButtonProps extends MessageProps {
   text: string;
   disabled?: boolean;
   onClick: () => void;
@@ -16,3 +19,5 @@ export const Button = ({ text, disabled, onClick }: ButtonProps) => {
     </button>
   );
 };
+
+export default withLogger(Button);

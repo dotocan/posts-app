@@ -1,6 +1,8 @@
 import { ChangeEvent, HTMLInputTypeAttribute } from "react";
+import { MessageProps } from "../../../shared/message.props";
+import { withLogger } from "../../../shared/loggerHoc";
 
-interface Props {
+interface Props extends MessageProps {
   type?: HTMLInputTypeAttribute;
   label?: string;
   placeholder?: string;
@@ -33,3 +35,5 @@ export const Input = ({ type, label, placeholder, onChange }: Props) => {
     </div>
   );
 };
+
+export default withLogger(Input);

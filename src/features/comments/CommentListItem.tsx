@@ -1,7 +1,10 @@
-﻿import { BodyText } from "../../components/primitives/typography/BodyText";
+﻿import BodyText from "../../components/primitives/typography/BodyText";
+import { logMessage } from "../../shared/constants";
+import { withLogger } from "../../shared/loggerHoc";
+import { MessageProps } from "../../shared/message.props";
 import { BlogPostComment } from "../posts/PostItem";
 
-interface Props {
+interface Props extends MessageProps {
   comment: BlogPostComment;
 }
 
@@ -22,7 +25,11 @@ export const CommentListItem = ({ comment }: Props) => {
           </p>
         </div>
       </div>
-      <BodyText color="faded">{comment.body}</BodyText>
+      <BodyText message={logMessage} color="faded">
+        {comment.body}
+      </BodyText>
     </article>
   );
 };
+
+export default withLogger(CommentListItem);

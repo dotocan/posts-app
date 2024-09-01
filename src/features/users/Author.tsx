@@ -1,8 +1,11 @@
-﻿import { BodyText } from "../../components/primitives/typography/BodyText";
-import { Heading2 } from "../../components/primitives/typography/Heading";
+﻿import BodyText from "../../components/primitives/typography/BodyText";
+import Heading2 from "../../components/primitives/typography/Heading2";
+import { logMessage } from "../../shared/constants";
+import { withLogger } from "../../shared/loggerHoc";
+import { MessageProps } from "../../shared/message.props";
 import { BlogAuthor } from "../posts/PostItem";
 
-interface Props {
+interface Props extends MessageProps {
   author: BlogAuthor | null;
 }
 
@@ -17,9 +20,13 @@ export const Author = ({ author }: Props) => {
         alt="Jese Leos"
       />
       <div>
-        <Heading2>{author.name}</Heading2>
-        <BodyText color="faded">{author.info}</BodyText>
+        <Heading2 message={logMessage}>{author.name}</Heading2>
+        <BodyText message={logMessage} color="faded">
+          {author.info}
+        </BodyText>
       </div>
     </div>
   );
 };
+
+export default withLogger(Author);

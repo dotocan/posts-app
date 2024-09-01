@@ -1,8 +1,11 @@
 import { useEffect } from "react";
 import { usePosts } from "./postsProvider";
-import { PostDetails } from "./PostDetails";
+import PostDetails from "./PostDetails";
+import { MessageProps } from "../../shared/message.props";
+import { withLogger } from "../../shared/loggerHoc";
+import { logMessage } from "../../shared/constants";
 
-interface Props {
+interface Props extends MessageProps {
   postId: string;
 }
 
@@ -21,5 +24,7 @@ export const PostContainer = ({ postId }: Props) => {
 
   if (postsContext.loadingSelectedPost) return <div>Loading...</div>;
 
-  return <PostDetails post={postsContext.blogPost} />;
+  return <PostDetails message={logMessage} post={postsContext.blogPost} />;
 };
+
+export default withLogger(PostContainer);

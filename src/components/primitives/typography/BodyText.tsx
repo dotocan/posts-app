@@ -1,3 +1,4 @@
+import { withLogger } from "../../../shared/loggerHoc";
 import {
   TypographyProps,
   weightToClassName,
@@ -18,3 +19,5 @@ export const BodyText = ({
     </p>
   );
 };
+
+export default withLogger(BodyText)

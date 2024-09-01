@@ -1,4 +1,10 @@
-﻿import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+﻿import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { checkToken, login, logout } from "../../services/auth/auth.service.ts";
 
 interface AuthContextType {
@@ -22,6 +28,10 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    getToken();
+  }, []);
 
   const getToken = () => {
     setLoading(true);

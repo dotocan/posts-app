@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
+import { MessageProps } from "../../shared/message.props";
+import { withLogger } from "../../shared/loggerHoc";
 
-interface Props {
+interface Props extends MessageProps {
   childrenLeft: ReactNode;
   childrenRight?: ReactNode;
 }
@@ -19,3 +21,5 @@ export const Navbar = ({ childrenLeft, childrenRight }: Props) => {
     </nav>
   );
 };
+
+export default withLogger(Navbar);
