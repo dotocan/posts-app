@@ -81,7 +81,7 @@ export const PostsProvider = ({ children }: PostsContextProps) => {
     if (resultPosts) {
       blogPosts = resultPosts.map((post) => {
         const postUser = resultUsers?.find((u) => u.id === post.userId);
-        const postComments = resultComments?.filter((rc) => rc.id === post.id);
+        const postComments = resultComments?.filter((rc) => rc.postId === post.id);
 
         return {
           id: post.id.toString(),
