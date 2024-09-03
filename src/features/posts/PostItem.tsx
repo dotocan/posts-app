@@ -1,4 +1,3 @@
-import AuthorPreview from "./AuthorPreview.tsx";
 import CommentsPreview from "../comments/CommentsPreview.tsx";
 import { Link } from "react-router-dom";
 import Heading2 from "../../components/primitives/typography/Heading2.tsx";
@@ -6,6 +5,7 @@ import BodyText from "../../components/primitives/typography/BodyText.tsx";
 import { logMessage } from "../../shared/constants.ts";
 import { MessageProps } from "../../shared/message.props.ts";
 import { withLogger } from "../../shared/loggerHoc.tsx";
+import AuthorPreview from "../users/AuthorPreview.tsx";
 
 export interface BlogAuthor {
   id: string;
@@ -39,12 +39,18 @@ export const PostItem = ({ post }: Props) => {
           <CommentsPreview message={logMessage} comments={post.comments} />
         </div>
 
-        <div>
-          <Heading2 message={logMessage} weight="bold" className="mb-2">
+        <div data-testid="post-preview">
+          <Heading2
+            message={logMessage}
+            weight="bold"
+            className="mb-2"
+            id="post-preview-title"
+          >
             <Link to={`/posts/${post.id}`}>{post.title}</Link>
           </Heading2>
 
           <BodyText
+            id="post-preview-body"
             message={logMessage}
             color="faded"
             weight="light"

@@ -1,6 +1,6 @@
 import { withLogger } from "../../shared/loggerHoc";
 import { MessageProps } from "../../shared/message.props";
-import { BlogAuthor } from "./PostItem";
+import { BlogAuthor } from "../posts/PostItem";
 
 interface Props extends MessageProps {
   author: BlogAuthor | null;
