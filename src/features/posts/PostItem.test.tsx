@@ -3,11 +3,7 @@ import "@testing-library/jest-dom";
 
 import { logMessage } from "../../shared/constants";
 import { BlogPost, PostItem } from "./PostItem";
-import {
-  BrowserRouter,
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 describe("PostItem.tsx", () => {
   test("Loads and displays PostItem with title and description", async () => {
