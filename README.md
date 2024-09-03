@@ -24,6 +24,8 @@ Run `npm run dev` to start the app locally
 
 Run `npm run test` to run all component unit tests
 
+Run `npm run storybook` to view components in Storybook
+
 # Architecture
 
 **main.tsx** - entry point, contains routing configuration wrapped by all of the top level Context providers
@@ -55,4 +57,3 @@ components don't usually use them directly, they communicate with services via C
  - Dedicated Loading component, perhaps a skeleton
  - Dedicated Error component for smaller errors, like an issue with loading post comments.
  - Dedicated EmptyState component, when there are 0 blog posts
- - Add Storybook as a tool for documenting and showcasing components
